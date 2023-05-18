@@ -55,15 +55,19 @@ export class ProductService {
     const { perPage, skip } = this.paginationService.getPagination(dto);
 
     const products = await this.prisma.product.findMany({
-        where: prismaSearchTermFilter,
-        orderBy: prismaSort,
-        skip,
-        take: perPage
+      where: prismaSearchTermFilter,
+      orderBy: prismaSort,
+      skip,
+      take: perPage,
+      select: productReturnObject,
     });
 
-    return {products, length: await this.prisma.product.count({
-        where: prismaSearchTermFilter
-    })}
+    return {
+      products,
+      length: await this.prisma.product.count({
+        where: prismaSearchTermFilter,
+      }),
+    };
   }
 
   async byId(id: number) {
@@ -139,16 +143,16 @@ export class ProductService {
   }
 
   // TODO do create method
-    // async create() {
-    //   return this.prisma.product.create({
-    //     data: {
-    //       name: "",
-    //       description: "",
-    //       images: [],
-    //       price: 0
-    //     },
-    //   });
-    // }
+  // async create() {
+  //   return this.prisma.product.create({
+  //     data: {
+  //       name: "",
+  //       description: "",
+  //       images: [],
+  //       price: 0
+  //     },
+  //   });
+  // }
 
   async update(id: number, dto: ProductDto) {
     const { description, images, price, name, categoryId } = dto;

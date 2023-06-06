@@ -39,7 +39,9 @@
     "prisma": "^4.12.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "slug": "^8.2.2"
+    "slug": "^8.2.2",
+    "uuid": "^9.0.0",
+    "yookassa": "^0.1.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
